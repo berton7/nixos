@@ -119,6 +119,11 @@
    vscode
    neofetch
    git
+   gcc
+   clang
+   gnumake
+   ninja
+   cmake
   #  wget
   ];
 

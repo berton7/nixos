@@ -73,13 +73,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-    programs = {
-      bash = {
-        enable = true;
-	enableCompletion = true;
-	shellAliases = {
-	  rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
-	};
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      shellAliases = {
+        rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
       };
     };
+  };
+
 }
