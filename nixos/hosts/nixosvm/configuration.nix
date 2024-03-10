@@ -45,12 +45,28 @@
     LC_TIME = "it_IT.UTF-8";
   };
 
+  # Sudo configuration
+  security.sudo = {
+    extraRules = [
+      {
+        groups = ["wheel"];
+        commands = [
+          {
+            command = "ALL";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
+  services.xserver.displayManager.defaultSession = "plasmax11";
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -126,6 +142,8 @@
     gnumake
     ninja
     cmake
+    vscode-fhs
+    alejandra
     #  wget
   ];
 

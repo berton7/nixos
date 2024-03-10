@@ -105,8 +105,8 @@
         diff = "diff --color=auto";
         ccat = "highlight --out-format=ansi";
 
-        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
-        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#default";
+        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixosvm-work";
+        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm-work";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";

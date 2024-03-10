@@ -36,6 +36,10 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    pkgs.zsh
+    pkgs.zsh-powerlevel10k
+    (pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -80,8 +84,46 @@
       enable = true;
       enableCompletion = true;
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#default";
+        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixosvm";
+        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm";
       };
+    };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
+      dotDir = "~/.config/zsh";
+
+      shellAliases = {
+        ls = "ls -hN --color=auto --group-directories-first";
+        ll = "ls -lisa";
+        mkd = "mkdir -pv";
+        cl = "clear";
+        grep = "grep --color=auto";
+        diff = "diff --color=auto";
+        ccat = "highlight --out-format=ansi";
+
+        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixosvm";
+        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm";
+      };
+      history.size = 10000;
+      history.path = "${config.xdg.dataHome}/zsh/history";
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = ["git" "sudo" "colored-man-pages"];
+        #theme = "powerlevel10/powerlevel10k";
+      };
+
+      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source " + config.programs.zsh.dotDir + "/.p10k.zsh";
+    };
+
+    git = {
+      enable = true;
+      userName = "berton7";
+      userEmail = "francy.berton99@gmail.com";
     };
   };
 }
