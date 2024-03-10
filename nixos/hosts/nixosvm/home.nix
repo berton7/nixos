@@ -94,7 +94,7 @@
       enableCompletion = true;
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
-      dotDir = "~/.config/zsh";
+      dotDir = ".config/zsh";
 
       shellAliases = {
         ls = "ls -hN --color=auto --group-directories-first";
@@ -117,7 +117,7 @@
         #theme = "powerlevel10/powerlevel10k";
       };
 
-      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source " + config.programs.zsh.dotDir + "/.p10k.zsh";
+      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source ~/" + config.programs.zsh.dotDir + "/.p10k.zsh";
     };
 
     git = {
