@@ -144,6 +144,7 @@
     cmake
     vscode-fhs
     alejandra
+    libnotify
     #  wget
   ];
 
