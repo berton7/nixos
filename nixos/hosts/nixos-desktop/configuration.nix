@@ -187,6 +187,7 @@
     vscode-fhs
     alejandra
     libnotify
+    authy
     #  wget
   ];
 
