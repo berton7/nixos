@@ -108,6 +108,7 @@
         rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixos-desktop";
         rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixos-desktop";
         rb = "~/dotfiles/nixos/nixos-rebuild.sh nixos-desktop";
+        nfu = "nix flake update ~/dotfiles/nixos";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
