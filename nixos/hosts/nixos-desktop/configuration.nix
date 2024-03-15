@@ -191,7 +191,7 @@
     neovim
     python3
     htop
-    chromium
+    google-chrome
     vscode
     neofetch
     git
