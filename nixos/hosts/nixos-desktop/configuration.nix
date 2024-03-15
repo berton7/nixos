@@ -188,6 +188,7 @@
     alejandra
     libnotify
     authy
+    spotify
     #  wget
   ];
 
