@@ -137,7 +137,6 @@
     python3
     htop
     chromium
-    vscode
     neofetch
     git
     gcc

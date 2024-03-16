@@ -192,7 +192,6 @@
     python3
     htop
     google-chrome
-    vscode
     neofetch
     git
     gcc
