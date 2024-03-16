@@ -92,7 +92,7 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       dotDir = "~/.config/zsh";
 
@@ -109,6 +109,8 @@
         rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm-work";
         rb = "~/dotfiles/nixos/nixos-rebuild.sh nixosvm-work";
         nfu = "nix flake update ~/dotfiles/nixos";
+
+        up = "nfu && rs";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
