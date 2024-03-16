@@ -42,6 +42,16 @@
     (pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
   ];
 
+  nixpkgs.overlays = [
+    (
+      self: super: {
+        multimc = super.multimc.override {
+          msaClientID = "c54fa8bc-b352-4122-b5d5-05471b2cc33c";
+        };
+      }
+    )
+  ];
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {

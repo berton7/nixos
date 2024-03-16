@@ -205,6 +205,7 @@
     authy
     spotify
     libsForQt5.kdeconnect-kde
+    prismlauncher
     #  wget
   ];
 
