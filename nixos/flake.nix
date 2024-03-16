@@ -19,13 +19,6 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/nixosvm/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
       nixosvm = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
@@ -44,6 +37,13 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/nixos-desktop/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+      nixos-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/nixos-laptop/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
       };
