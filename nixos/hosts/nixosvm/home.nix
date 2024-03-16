@@ -110,7 +110,7 @@
         rb = "~/dotfiles/nixos/nixos-rebuild.sh nixosvm";
         nfu = "nix flake update ~/dotfiles/nixos";
 
-        up = "nfu && rs";
+        up = "pushd ~/dotfiles/nixos && git pull && nfu && rs && popd";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
