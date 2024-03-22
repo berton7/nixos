@@ -204,7 +204,6 @@
     vscode-fhs
     alejandra
     libnotify
-    authy
     spotify
     libsForQt5.kdeconnect-kde
     prismlauncher
