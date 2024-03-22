@@ -136,7 +136,7 @@
     neovim
     python3
     htop
-    chromium
+    google-chrome
     neofetch
     git
     gcc
