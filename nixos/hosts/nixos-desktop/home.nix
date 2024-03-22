@@ -121,6 +121,8 @@
         nfu = "nix flake update ~/dotfiles/nixos";
 
         up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
+
+        cleanup = "~/dotfiles/nixos/cleanup.sh";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
