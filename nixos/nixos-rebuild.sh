@@ -14,7 +14,7 @@ set -e
 
 if [ -z "$1" ]
   then
-    echo "Configuration name not present. Exmaple usage: \`nixos-rebuild.sh default\`"
+    echo "Configuration name not present. Example usage: \`nixos-rebuild.sh default\`"
     exit 1
 fi
 
