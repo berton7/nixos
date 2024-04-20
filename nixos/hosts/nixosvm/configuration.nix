@@ -64,8 +64,8 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.defaultSession = "plasmax11";
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
+  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -118,9 +118,9 @@
   };
 
   ## Enable automatic login for the user.
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "berton";
-  services.xserver.displayManager.autoLogin.enable = false;
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "berton";
+  services.displayManager.autoLogin.enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -176,7 +176,7 @@
 
   # Virtualisation
   virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.x11 = true;
+  virtualisation.virtualbox.guest.clipboard = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 }
