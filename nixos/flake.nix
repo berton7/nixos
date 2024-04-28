@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {
@@ -24,6 +26,7 @@
         modules = [
           ./hosts/nixosvm/configuration.nix
           inputs.home-manager.nixosModules.default
+          inputs.vscode-server.nixosModules.default
         ];
       };
       nixosvm-work = nixpkgs.lib.nixosSystem {
