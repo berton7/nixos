@@ -15,7 +15,7 @@ alejandra . >/dev/null
 git diff -U0
 
 ## Rebuild
-sudo nixos-rebuild switch --flake ~/dotfiles/nixos#$1
+sudo nixos-rebuild switch --flake ~/dotfiles/nixos#$conf
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations --flake ~/dotfiles/nixos#$conf | grep current)
