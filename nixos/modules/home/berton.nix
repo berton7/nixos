@@ -2,7 +2,26 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  commonAliases = {
+    ls = "ls -hN --color=auto --group-directories-first";
+    ll = "ls -lisa";
+    mkd = "mkdir -pv";
+    cl = "clear";
+    grep = "grep --color=auto";
+    diff = "diff --color=auto";
+    ccat = "highlight --out-format=ansi";
+
+    rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
+    rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
+    rb = "~/dotfiles/nixos/nixos-rebuild.sh";
+    nfu = "nix flake update ~/dotfiles/nixos";
+
+    up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
+
+    cleanup = "~/dotfiles/nixos/cleanup.sh";
+  };
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "berton";
@@ -83,10 +102,7 @@
     bash = {
       enable = true;
       enableCompletion = true;
-      shellAliases = {
-        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
-        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
-      };
+      shellAliases = commonAliases;
     };
 
     zsh = {
@@ -96,24 +112,7 @@
       syntaxHighlighting.enable = true;
       dotDir = ".config/zsh";
 
-      shellAliases = {
-        ls = "ls -hN --color=auto --group-directories-first";
-        ll = "ls -lisa";
-        mkd = "mkdir -pv";
-        cl = "clear";
-        grep = "grep --color=auto";
-        diff = "diff --color=auto";
-        ccat = "highlight --out-format=ansi";
-
-        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
-        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
-        rb = "~/dotfiles/nixos/nixos-rebuild.sh";
-        nfu = "nix flake update ~/dotfiles/nixos";
-
-        up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
-
-        cleanup = "~/dotfiles/nixos/cleanup.sh";
-      };
+      shellAliases = commonAliases;
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 
