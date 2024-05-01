@@ -2,11 +2,8 @@
 # A rebuild script that commits on a successful build
 set -e
 
-if [ -z "$1" ]
-  then
-    echo "Configuration name not present. Example usage: \`nixos-rebuild.sh default\`"
-    exit 1
-fi
+#Get configuration name, default to hostname
+conf=${1:-$(hostname)}
 
 # cd to your config dir
 pushd ~/dotfiles/nixos/
@@ -21,10 +18,10 @@ git diff -U0
 sudo nixos-rebuild switch --flake ~/dotfiles/nixos#$1
 
 # Get current generation metadata
-current=$(nixos-rebuild list-generations --flake ~/dotfiles/nixos#$1 | grep current)
+current=$(nixos-rebuild list-generations --flake ~/dotfiles/nixos#$conf | grep current)
 
 # Commit all changes witih the generation metadata
-git commit -am "$1 $current"
+git commit -am "$conf $current"
 
 # Back to where you were
 popd
