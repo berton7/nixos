@@ -145,7 +145,7 @@
     vscode-fhs
     alejandra
     libnotify
-    #  wget
+    tmux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

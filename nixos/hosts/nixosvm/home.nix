@@ -84,8 +84,8 @@
       enable = true;
       enableCompletion = true;
       shellAliases = {
-        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixosvm";
-        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm";
+        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
+        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
       };
     };
 
@@ -105,9 +105,9 @@
         diff = "diff --color=auto";
         ccat = "highlight --out-format=ansi";
 
-        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#nixosvm";
-        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos#nixosvm";
-        rb = "~/dotfiles/nixos/nixos-rebuild.sh nixosvm";
+        rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
+        rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
+        rb = "~/dotfiles/nixos/nixos-rebuild.sh";
         nfu = "nix flake update ~/dotfiles/nixos";
 
         up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
