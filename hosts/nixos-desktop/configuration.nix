@@ -174,7 +174,7 @@
     # also pass inputs to home-manager modules
     extraSpecialArgs = {inherit inputs;};
     users = {
-      "berton" = import ./home.nix;
+      "berton" = import ../../modules/home/berton.nix;
     };
   };
 
@@ -207,7 +207,7 @@
     spotify
     libsForQt5.kdeconnect-kde
     prismlauncher
-    #  wget
+    alacritty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
