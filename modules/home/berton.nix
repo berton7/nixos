@@ -129,6 +129,11 @@ in {
       enable = true;
       userName = "berton7";
       userEmail = "francy.berton99@gmail.com";
+      extraConfig = {
+        pull = {
+          rebase = true;
+        };
+      };
     };
   };
 }
