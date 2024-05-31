@@ -144,7 +144,6 @@
     vscode-fhs
     alejandra
     libnotify
-    prismlauncher
     #  wget
   ];
 
