@@ -4,6 +4,7 @@
   ...
 }: let
   commonAliases = {
+    # commands
     ls = "ls -hN --color=auto --group-directories-first";
     ll = "ls -lisa";
     mkd = "mkdir -pv";
@@ -11,14 +12,19 @@
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     ccat = "highlight --out-format=ansi";
+    starts = "sudo systemtl start";
+    stops = "sudo systemtl stop";
+    restarts = "sudo systemtl restart";
+    reloads = "sudo systemtl reload";
+    stats = "sudo systemtl status";
+    sudo = "sudo"; # alias under sudo
 
+    # scripts
     rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
     rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
     rb = "~/dotfiles/nixos/nixos-rebuild.sh";
     nfu = "nix flake update ~/dotfiles/nixos";
-
     up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
-
     cleanup = "~/dotfiles/nixos/cleanup.sh";
   };
 in {
