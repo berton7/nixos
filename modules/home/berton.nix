@@ -12,11 +12,11 @@
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     ccat = "highlight --out-format=ansi";
-    starts = "sudo systemtl start";
-    stops = "sudo systemtl stop";
-    restarts = "sudo systemtl restart";
-    reloads = "sudo systemtl reload";
-    stats = "sudo systemtl status";
+    starts = "sudo systemctl start";
+    stops = "sudo systemctl stop";
+    restarts = "sudo systemctl restart";
+    reloads = "sudo systemctl reload";
+    stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
 
     # scripts
