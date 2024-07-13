@@ -101,7 +101,7 @@
   users.users.berton = {
     isNormalUser = true;
     description = "berton";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "vboxsf"];
     packages = with pkgs; [
       firefox
       kate
