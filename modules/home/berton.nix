@@ -27,6 +27,9 @@
     nfu = "nix flake update ~/dotfiles/nixos";
     up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
     cleanup = "~/dotfiles/nixos/cleanup.sh";
+
+    # shell-nix
+    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix";
   };
 in {
   # Home Manager needs a bit of information about you and the paths it should
