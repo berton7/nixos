@@ -136,11 +136,6 @@
     google-chrome
     neofetch
     git
-    gcc
-    clang
-    gnumake
-    ninja
-    cmake
     alejandra
     libnotify
   ];

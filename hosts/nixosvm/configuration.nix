@@ -137,11 +137,6 @@
     chromium
     neofetch
     git
-    gcc
-    clang
-    gnumake
-    ninja
-    cmake
     vscode-fhs
     alejandra
     libnotify
