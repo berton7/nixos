@@ -29,7 +29,7 @@
     cleanup = "~/dotfiles/nixos/cleanup.sh";
 
     # shell-nix
-    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix";
+    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix && echo \"use nix\" >> .envrc && direnv allow";
   };
 in {
   # Home Manager needs a bit of information about you and the paths it should
@@ -128,11 +128,11 @@ in {
 
       oh-my-zsh = {
         enable = true;
-        plugins = ["git" "sudo" "colored-man-pages"];
+        plugins = ["git" "sudo" "colored-man-pages" "direnv"];
         #theme = "powerlevel10/powerlevel10k";
       };
 
-      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source ~/" + config.programs.zsh.dotDir + "/.p10k.zsh";
+      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source ~/${config.programs.zsh.dotDir}/.p10k.zsh";
     };
 
     git = {
@@ -144,6 +144,13 @@ in {
           rebase = true;
         };
       };
+    };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
   };
 }
