@@ -36,6 +36,13 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      nixosvm-magoga = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/nixosvm-magoga/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
       nixos-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
