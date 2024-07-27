@@ -126,13 +126,24 @@ in {
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 
+      plugins = [
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "powerlevel10k-config";
+          src = ./p10k-config;
+          file = "p10k.zsh";
+        }
+      ];
+
       oh-my-zsh = {
         enable = true;
         plugins = ["git" "sudo" "colored-man-pages" "direnv"];
-        #theme = "powerlevel10/powerlevel10k";
       };
 
-      initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme && source ~/${config.programs.zsh.dotDir}/.p10k.zsh";
     };
 
     git = {
