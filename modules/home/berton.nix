@@ -18,7 +18,7 @@
     reloads = "sudo systemctl reload";
     stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
-    dot = "cd ~/dotfiles/nixos";
+    dot = "code ~/dotfiles/nixos";
 
     # scripts
     rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
@@ -143,7 +143,6 @@ in {
         enable = true;
         plugins = ["git" "sudo" "colored-man-pages" "direnv"];
       };
-
     };
 
     git = {
