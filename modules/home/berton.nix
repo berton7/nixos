@@ -19,6 +19,7 @@
     stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
     dot = "code ~/dotfiles/nixos";
+    gu = "git undo";
 
     # scripts
     rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
@@ -153,6 +154,9 @@ in {
         pull = {
           rebase = true;
         };
+      };
+      aliases = {
+        undo = "reset HEAD~1 --soft";
       };
     };
 
