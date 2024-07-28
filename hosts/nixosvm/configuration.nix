@@ -140,6 +140,7 @@
     alejandra
     libnotify
     tmux
+    kdePackages.ksvg # needed for sddm themes
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
