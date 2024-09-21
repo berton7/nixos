@@ -206,6 +206,7 @@
     prismlauncher
     alacritty
     kdePackages.ksvg # needed for sddm themes
+    btop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
