@@ -121,10 +121,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.defaultSession = "plasmax11";
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the Cinnamon Desktop Environment.
+  services.xserver.displayManager.defaultSession = "cinnamon";
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -237,4 +237,12 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  virtualisation.vmVariant = {
+    # following configuration is added only when building VM with build-vm
+    virtualisation = {
+      memorySize = 4096; # Use 2048MiB memory.
+      cores = 3;
+    };
+  };
 }
