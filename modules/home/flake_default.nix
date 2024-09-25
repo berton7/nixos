@@ -26,7 +26,7 @@
         with pkgs; {
           devShells.default = mkShell {
             # put here your build pkgs!
-            buildInputs = [];
+            nativeBuildInputs = [];
           };
         }
     );
