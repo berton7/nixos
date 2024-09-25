@@ -238,6 +238,7 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # `nixos-rebuild build-vm` configuration
   virtualisation.vmVariant = {
     # following configuration is added only when building VM with build-vm
     virtualisation = {
