@@ -9,21 +9,25 @@
       };
     };
   };
-  outputs = { self, nixpkgs, flake-utils, myrepo }:
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    myrepo,
+  }:
     flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-          };
-          mypkgs = myrepo.packages.${system};
-        in
-        with pkgs;
-        {
+    (
+      system: let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+        mypkgs = myrepo.packages.${system};
+      in
+        with pkgs; {
           devShells.default = mkShell {
             # put here your build pkgs!
-            buildInputs = [  ];
+            buildInputs = [];
           };
         }
-      );
+    );
 }
