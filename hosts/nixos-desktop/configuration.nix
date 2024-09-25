@@ -122,7 +122,7 @@
   services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.defaultSession = "cinnamon";
+  services.displayManager.defaultSession = "cinnamon";
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
