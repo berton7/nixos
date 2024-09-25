@@ -30,7 +30,8 @@
     cleanup = "~/dotfiles/nixos/cleanup.sh";
 
     # shell-nix
-    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix && echo \"use nix\" >> .envrc && direnv allow";
+    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix && echo \"use nix\" > .envrc && direnv allow";
+    mkflake = "cp ~/dotfiles/nixos/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
   # Home Manager needs a bit of information about you and the paths it should
