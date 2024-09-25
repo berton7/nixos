@@ -10,15 +10,19 @@
     };
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+
+    myrepo.url = "github:berton7/myflake";
   };
 
   outputs = {
     self,
     nixpkgs,
+    myrepo,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    mypkgs = myrepo.packages.${system};
   in {
     nixosConfigurations = {
       nixosvm = nixpkgs.lib.nixosSystem {
