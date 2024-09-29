@@ -207,6 +207,7 @@
     alacritty
     kdePackages.ksvg # needed for sddm themes
     btop
+    ntfs3g
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
