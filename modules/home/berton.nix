@@ -54,7 +54,7 @@ in {
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -72,9 +72,16 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.zsh
-    pkgs.zsh-powerlevel10k
-    (pkgs.nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
+    # zsh shell
+    zsh
+    zsh-powerlevel10k
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
+
+    # other programs
+    python3
+    vscode-fhs
+    spotify
+    libsForQt5.kdeconnect-kde
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

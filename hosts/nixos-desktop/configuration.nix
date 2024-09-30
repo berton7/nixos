@@ -166,9 +166,7 @@
     description = "berton";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      firefox
-      kate
-      #  thunderbird
+      prismlauncher
     ];
   };
 
@@ -191,20 +189,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    lf
     neovim
-    python3
     htop
     google-chrome
     neofetch
     git
-    vscode-fhs
     alejandra
-    libnotify
-    spotify
-    libsForQt5.kdeconnect-kde
-    prismlauncher
-    alacritty
     kdePackages.ksvg # needed for sddm themes
     btop
     ntfs3g
