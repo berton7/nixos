@@ -34,7 +34,6 @@
     mkflake = "cp ~/dotfiles/nixos/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
-
   # allow unfree also in home-manager
   nixpkgs.config.allowUnfree = true;
 
