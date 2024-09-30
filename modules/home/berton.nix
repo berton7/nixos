@@ -34,6 +34,10 @@
     mkflake = "cp ~/dotfiles/nixos/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
+
+  # allow unfree also in home-manager
+  nixpkgs.config.allowUnfree = true;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "berton";
