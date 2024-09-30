@@ -118,13 +118,25 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # Enable the KDE Plasma Desktop Environment (wayland).
+  services = {
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland = {
+          enable = true;
+        };
+      };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.defaultSession = "plasmax11";
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+      defaultSession = "plasma";
+    };
+
+    desktopManager = {
+      plasma6 = {
+        enable = true;
+      };
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
