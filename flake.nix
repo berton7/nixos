@@ -33,6 +33,13 @@
       nixosvm = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
           ./hosts/nixosvm/configuration.nix
           inputs.home-manager.nixosModules.default
           inputs.vscode-server.nixosModules.default
@@ -55,6 +62,13 @@
       nixosvm-magoga = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
           ./hosts/nixosvm-magoga/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
@@ -62,6 +76,13 @@
       nixos-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
           ./hosts/nixos-desktop/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
@@ -69,6 +90,13 @@
       nixos-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
           ./hosts/nixos-laptop/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
