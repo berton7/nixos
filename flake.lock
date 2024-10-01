@@ -40,14 +40,16 @@
     },
     "myrepo": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1727263424,
-        "narHash": "sha256-5/Cup3gxaFWilEu3q+KpvPEd60ECKbtvuwDUiLwR6UY=",
+        "lastModified": 1727786966,
+        "narHash": "sha256-Rcek+owa+K8k01nHkxL4hNKFNNWCgUj9TPMhGPHmw60=",
         "owner": "berton7",
         "repo": "myflake",
-        "rev": "57f6930631dc0b959b0c38502d3011d4b4d4e6fa",
+        "rev": "d4d8c0d5ffb69ad31d61e143446ec22afbff4d9f",
         "type": "github"
       },
       "original": {
@@ -90,7 +92,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1682134069,
         "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
@@ -108,7 +110,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "myrepo": "myrepo",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "vscode-server": "vscode-server"
       }
     },
@@ -130,7 +132,7 @@
     "vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1713958148,

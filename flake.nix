@@ -11,7 +11,10 @@
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
-    myrepo.url = "github:berton7/myflake";
+    myrepo = {
+      url = "github:berton7/myflake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -22,7 +25,6 @@
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    mypkgs = myrepo.packages.${system};
   in {
     nixosConfigurations = {
       nixosvm = nixpkgs.lib.nixosSystem {
@@ -36,6 +38,13 @@
       nixosvm-work = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
           ./hosts/nixosvm-work/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
