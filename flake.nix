@@ -1,6 +1,15 @@
 {
   description = "Nixos config flake";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://berton7.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "berton7.cachix.org-1:l/TMwhoI++Yzzmb+ZkbB2bkjgO2X+KZ0JfJoi8NB3oA="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 

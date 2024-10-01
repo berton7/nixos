@@ -107,6 +107,7 @@
       #  thunderbird
     ];
   };
+  nix.settings.trusted-users = [ "root" "berton" ];
 
   home-manager = {
     # also pass inputs to home-manager modules
@@ -136,6 +137,7 @@
     alejandra
     libnotify
     kdePackages.ksvg # needed for sddm themes
+    cachix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
