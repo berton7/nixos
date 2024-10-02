@@ -2,6 +2,11 @@
 # A rebuild script that commits on a successful build
 set -e
 
+if [ -z "${dotfilesRoot}" ]; then
+	echo "Please set the environment variable \`dotfilesRoot\`"
+	exit 1
+fi
+
 #Get configuration name, default to hostname
 conf=${1:-$(hostname)}
 
