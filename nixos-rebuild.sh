@@ -5,23 +5,17 @@ set -e
 #Get configuration name, default to hostname
 conf=${1:-$(hostname)}
 
-# cd to your config dir
-pushd ~/dotfiles/nixos/
-
 # Autoformat your nix files
-alejandra . >/dev/null
+alejandra $dotfilesRoot >/dev/null
 
 # Shows your changes
-git diff -U0
+git -C $dotfilesRoot diff -U0
 
 ## Rebuild
-sudo nixos-rebuild switch --flake ~/dotfiles/nixos#$conf
+sudo nixos-rebuild switch --flake $dotfilesRoot#$conf
 
 # Get current generation metadata
-current=$(nixos-rebuild list-generations --flake ~/dotfiles/nixos#$conf | grep current)
+current=$(nixos-rebuild list-generations --flake $dotfilesRoot#$conf | grep current)
 
 # Commit all changes witih the generation metadata
-git commit -am "$conf $current"
-
-# Back to where you were
-popd
+git -C $dotfilesRoot commit -am "$conf $current"

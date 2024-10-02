@@ -114,6 +114,9 @@
     users = {
       "berton" = import ../../modules/home/berton.nix;
     };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "bak";
   };
 
   ## Enable automatic login for the user.

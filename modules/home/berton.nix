@@ -3,6 +3,11 @@
   pkgs,
   ...
 }: let
+  # this is the directory where I expect the flake system configuration to be found
+  dotfilesRoot = "/home/berton/dotfiles/nixos";
+  # this is the directory of the final flake system configuration (/nix/store)
+  storeDotfilesRoot = builtins.toString ../..;
+
   commonAliases = {
     # commands
     ls = "ls -hN --color=auto --group-directories-first";
@@ -18,20 +23,20 @@
     reloads = "sudo systemctl reload";
     stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
-    dot = "code ~/dotfiles/nixos";
+    dot = "code ${dotfilesRoot}";
     gu = "git undo";
 
     # scripts
-    rs = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos";
-    rt = "sudo nixos-rebuild test --flake ~/dotfiles/nixos";
-    rb = "~/dotfiles/nixos/nixos-rebuild.sh";
-    nfu = "nix flake update ~/dotfiles/nixos";
-    up = "pushd ~/dotfiles/nixos && git pull && nfu && rb && popd";
-    cleanup = "~/dotfiles/nixos/cleanup.sh";
+    rs = "sudo nixos-rebuild switch --flake ${dotfilesRoot}";
+    rt = "sudo nixos-rebuild test --flake ${dotfilesRoot}";
+    rb = "dotfilesRoot=${dotfilesRoot} ${storeDotfilesRoot}/nixos-rebuild.sh";
+    nfu = "nix flake update ${dotfilesRoot}";
+    up = "git pull -C ${dotfilesRoot} && nfu && rb";
+    cleanup = "${storeDotfilesRoot}/cleanup.sh";
 
     # shell-nix
-    mkshell = "cp ~/dotfiles/nixos/modules/home/shell_default.nix shell.nix && echo \"use nix\" > .envrc && direnv allow";
-    mkflake = "cp ~/dotfiles/nixos/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
+    mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && echo \"use nix\" > .envrc && direnv allow";
+    mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
   # allow unfree also in home-manager
@@ -83,13 +88,13 @@ in {
     libsForQt5.kdeconnect-kde
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # Home Manager is pretty good at managing ${dotfilesRoot}. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # Building this configuration will create a copy of '${dotfilesRoot}/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+    # ".screenrc".source = ${dotfilesRoot}/screenrc;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -176,6 +181,13 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+
+    htop = {
+      enable = true;
+      settings = {
+        show_program_path = false;
+      };
     };
   };
 }

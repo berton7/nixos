@@ -188,6 +188,9 @@
     users = {
       berton = import ../../modules/home/berton.nix;
     };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "bak";
   };
 
   ## Enable automatic login for the user.
@@ -210,6 +213,7 @@
     kdePackages.ksvg # needed for sddm themes
     btop
     ntfs3g
+    file
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
