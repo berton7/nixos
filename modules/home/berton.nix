@@ -31,7 +31,7 @@
     rt = "sudo nixos-rebuild test --flake ${dotfilesRoot}";
     rb = "dotfilesRoot=${dotfilesRoot} ${storeDotfilesRoot}/nixos-rebuild.sh";
     nfu = "nix flake update ${dotfilesRoot}";
-    up = "git pull -C ${dotfilesRoot} && nfu && rb";
+    up = "git -C ${dotfilesRoot} pull && nfu && rb";
     cleanup = "${storeDotfilesRoot}/cleanup.sh";
 
     # shell-nix
