@@ -137,7 +137,6 @@
     neofetch
     git
     alejandra
-    libnotify
     kdePackages.ksvg # needed for sddm themes
   ];
 

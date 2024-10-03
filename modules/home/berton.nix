@@ -21,15 +21,15 @@
     reloads = "sudo systemctl reload";
     stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
-    dot = "code $DOTFILES_ROOT";
+    dot = "code $NIXOS_CONFIG_ROOT";
     gu = "git undo";
 
     # scripts
-    rs = "sudo nixos-rebuild switch --flake $DOTFILES_ROOT";
-    rt = "sudo nixos-rebuild test --flake $DOTFILES_ROOT";
-    rb = "dotfilesRoot=$DOTFILES_ROOT ${storeDotfilesRoot}/nixos-rebuild.sh";
-    nfu = "nix flake update $DOTFILES_ROOT";
-    up = "git -C $DOTFILES_ROOT pull && nfu && rb";
+    rs = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_ROOT";
+    rt = "sudo nixos-rebuild test --flake $NIXOS_CONFIG_ROOT";
+    rb = "dotfilesRoot=$NIXOS_CONFIG_ROOT ${storeDotfilesRoot}/nixos-rebuild.sh";
+    nfu = "nix flake update $NIXOS_CONFIG_ROOT";
+    up = "git -C $NIXOS_CONFIG_ROOT pull && nfu && rb";
     cleanup = "${storeDotfilesRoot}/cleanup.sh";
 
     # shell-nix
@@ -128,7 +128,7 @@ Parent=FALLBACK/
   #
   home.sessionVariables = {
     EDITOR = "nvim";
-    DOTFILES_ROOT = "$HOME/dotfiles/nixos";
+    NIXOS_CONFIG_ROOT = "$HOME/dotfiles/nixos";
   };
 
   # Let Home Manager install and manage itself.
@@ -197,6 +197,13 @@ Parent=FALLBACK/
       settings = {
         show_program_path = false;
       };
+    };
+
+    neovim = {
+      enable = true;
+      extraConfig = ''
+        set number
+      '';
     };
   };
 }
