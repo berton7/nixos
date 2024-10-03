@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: let
-  # this is the directory where I expect the flake system configuration to be found
-  dotfilesRoot = "/home/berton/dotfiles/nixos";
   # this is the directory of the final flake system configuration (/nix/store)
   storeDotfilesRoot = builtins.toString ../..;
 
@@ -23,15 +21,15 @@
     reloads = "sudo systemctl reload";
     stats = "sudo systemctl status";
     sudo = "sudo"; # alias under sudo
-    dot = "code ${dotfilesRoot}";
+    dot = "code $DOTFILES_ROOT";
     gu = "git undo";
 
     # scripts
-    rs = "sudo nixos-rebuild switch --flake ${dotfilesRoot}";
-    rt = "sudo nixos-rebuild test --flake ${dotfilesRoot}";
-    rb = "dotfilesRoot=${dotfilesRoot} ${storeDotfilesRoot}/nixos-rebuild.sh";
-    nfu = "nix flake update ${dotfilesRoot}";
-    up = "git -C ${dotfilesRoot} pull && nfu && rb";
+    rs = "sudo nixos-rebuild switch --flake $DOTFILES_ROOT";
+    rt = "sudo nixos-rebuild test --flake $DOTFILES_ROOT";
+    rb = "dotfilesRoot=$DOTFILES_ROOT ${storeDotfilesRoot}/nixos-rebuild.sh";
+    nfu = "nix flake update $DOTFILES_ROOT";
+    up = "git -C $DOTFILES_ROOT pull && nfu && rb";
     cleanup = "${storeDotfilesRoot}/cleanup.sh";
 
     # shell-nix
@@ -130,6 +128,7 @@ Parent=FALLBACK/
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    DOTFILES_ROOT = "$HOME/dotfiles/nixos";
   };
 
   # Let Home Manager install and manage itself.
