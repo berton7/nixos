@@ -33,8 +33,8 @@
     cleanup = "${storeDotfilesRoot}/cleanup.sh";
 
     # shell-nix
-    mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && echo \"use nix\" > .envrc && direnv allow";
-    mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && echo \"use flake\" > .envrc && direnv allow";
+    mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && chmod +w shell.nix && echo \"use nix\" > .envrc && direnv allow";
+    mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && chmod +w flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
   # allow unfree also in home-manager
