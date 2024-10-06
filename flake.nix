@@ -87,6 +87,13 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      nixosvm-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/nixosvm-desktop/configuration.nix
+          # inputs.home-manager.nixosModules.default
+        ];
+      };
       nixos-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [

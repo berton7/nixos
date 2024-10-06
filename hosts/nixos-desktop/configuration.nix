@@ -10,8 +10,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
+    # inputs.home-manager.nixosModules.default
+    ../../modules/home/users/User1.nix
   ];
+
+  User1.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -194,8 +197,8 @@
   };
 
   ## Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "berton";
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "berton";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
