@@ -1,1 +1,3 @@
-nixos-switch.log
+# files created by 'nixos-rebuild build-vm'
+*.qcow2
+result
