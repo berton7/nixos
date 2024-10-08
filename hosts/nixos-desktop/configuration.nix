@@ -14,9 +14,6 @@
     ../../modules/home/users/User1.nix
   ];
 
-  User1.enable = true;
-  User1.extraPkgs = with pkgs; [cmatrix];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
