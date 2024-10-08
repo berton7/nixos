@@ -6,6 +6,41 @@
   ...
 }: let
   cfg = config.User1;
+
+  # this is the directory of the final flake system configuration (/nix/store)
+  storeDotfilesRoot = builtins.toString ../..;
+
+  commonAliases = {
+    # commands
+    ls = "ls -hN --color=auto --group-directories-first";
+    ll = "ls -lisa";
+    mkd = "mkdir -pv";
+    cl = "clear";
+    grep = "grep --color=auto";
+    diff = "diff --color=auto";
+    ccat = "highlight --out-format=ansi";
+    starts = "sudo systemctl start";
+    stops = "sudo systemctl stop";
+    restarts = "sudo systemctl restart";
+    reloads = "sudo systemctl reload";
+    stats = "sudo systemctl status";
+    sudo = "sudo"; # alias under sudo
+    dot = "code $NIXOS_CONFIG_ROOT";
+    gu = "git undo";
+
+    # scripts
+    rs = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_ROOT";
+    rt = "sudo nixos-rebuild test --flake $NIXOS_CONFIG_ROOT";
+    rb = "dotfilesRoot=$NIXOS_CONFIG_ROOT ${storeDotfilesRoot}/nixos-rebuild.sh";
+    nfu = "nix flake update $NIXOS_CONFIG_ROOT";
+    up = "git -C $NIXOS_CONFIG_ROOT pull && nfu && rb";
+    cleanup = "${storeDotfilesRoot}/cleanup.sh";
+
+    # shell-nix
+    mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && chmod +w shell.nix && echo \"use nix\" > .envrc && direnv allow";
+    mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && chmod +w flake.nix && echo \"use flake\" > .envrc && direnv allow";
+  };
+
 in {
   imports = [
     inputs.home-manager.nixosModules.default
@@ -14,6 +49,20 @@ in {
     enable = lib.mkEnableOption "Enable User1";
     username = lib.mkOption {
       default = "User1";
+    };
+    defaultPkgs = lib.mkOption {
+      default = with pkgs; [
+        # zsh shell
+        zsh
+        zsh-powerlevel10k
+        (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
+
+        # other programs
+        python3
+        vscode-fhs
+        spotify
+        libsForQt5.kdeconnect-kde
+      ];
     };
     extraPkgs = lib.mkOption {
       default = [];
@@ -28,7 +77,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     users.users."${cfg.username}" = {
       isNormalUser = true;
       description = "${cfg.username}";
@@ -44,44 +93,106 @@ in {
       backupFileExtension = "bak";
 
       users."${cfg.username}" = {
+        # allow unfree also in home-manager
+        nixpkgs.config.allowUnfree = true;
+
         home.stateVersion = "23.11"; # Please read the comment before changing.
 
-        home.packages = with pkgs; lib.mkDefault [
-          cowsay
-        ] ;
+        home.packages = cfg.defaultPkgs;
 
-        programs = lib.mkDefault {
-          # Let Home Manager install and manage itself.
-          home-manager.enable = true;
+        home.file = {
+          ".local/share/konsole/zsh.profile".text = "
+            [Appearance]
+            ColorScheme=DarkPastels
 
-          # zsh = {
-          #   enable = true;
-          #   enableCompletion = true;
-          #   autosuggestion.enable = true;
-          #   syntaxHighlighting.enable = true;
-          #   dotDir = ".config/zsh";
+            [General]
+            Command=zsh -l
+            Name=zsh
+            Parent=FALLBACK/
+          ";
+        };
 
-          #   history.size = 10000;
-          #   history.path = "${config.xdg.dataHome}/zsh/history";
+        home.sessionVariables = {
+          EDITOR = "nvim";
+          NIXOS_CONFIG_ROOT = "$HOME/dotfiles/nixos";
+        };
 
-          #   plugins = [
-          #     {
-          #       name = "powerlevel10k";
-          #       src = pkgs.zsh-powerlevel10k;
-          #       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          #     }
-          #     {
-          #       name = "powerlevel10k-config";
-          #       src = ./p10k-config;
-          #       file = "p10k.zsh";
-          #     }
-          #   ];
+	      programs = {
+          home-manager = {
+            enable = true;
+          };
 
-          #   oh-my-zsh = {
-          #     enable = true;
-          #     plugins = ["git" "sudo" "colored-man-pages" "direnv"];
-          #   };
-          # };
+
+          bash = {
+            enable = true;
+            enableCompletion = true;
+            shellAliases = commonAliases;
+          };
+
+          zsh = {
+            enable = true;
+            enableCompletion = true;
+            autosuggestion.enable = true;
+            syntaxHighlighting.enable = true;
+            dotDir = ".config/zsh";
+
+            shellAliases = commonAliases;
+            history.size = 10000;
+            # history.path = "${config.xdg.dataHome}/zsh/history";
+
+            plugins = [
+              {
+                name = "powerlevel10k";
+                src = pkgs.zsh-powerlevel10k;
+                file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+              }
+              {
+                name = "powerlevel10k-config";
+                src = ../p10k-config;
+                file = "p10k.zsh";
+              }
+            ];
+
+            oh-my-zsh = {
+              enable = true;
+              plugins = ["git" "sudo" "colored-man-pages" "direnv"];
+            };
+          };
+
+          git = {
+            enable = true;
+            userName = "berton7";
+            userEmail = "francy.berton99@gmail.com";
+            extraConfig = {
+              pull = {
+                rebase = true;
+              };
+            };
+            aliases = {
+              undo = "reset HEAD~1 --soft";
+            };
+          };
+
+          direnv = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
+            nix-direnv.enable = true;
+          };
+
+          htop = {
+            enable = true;
+            settings = {
+              show_program_path = false;
+            };
+          };
+
+          neovim = {
+            enable = true;
+            extraConfig = ''
+              set number
+            '';
+          };
         };
       };
     };
