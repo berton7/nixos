@@ -67,14 +67,6 @@ in {
     extraPkgs = lib.mkOption {
       default = [];
     };
-    enableHomeManager = lib.mkOption {
-      default = true;
-    };
-
-    isVM = lib.mkOption {
-      description = "Wether the user is intended for server use or not (if enabled some packages will not be installed)";
-      default = false;
-    };
   };
 
   config = {
@@ -82,10 +74,9 @@ in {
       isNormalUser = true;
       description = "${cfg.username}";
       extraGroups = lib.mkDefault ["networkmanager" "wheel"];
-      initialPassword = "a";
     };
 
-    home-manager = lib.mkIf cfg.enableHomeManager {
+    home-manager = {
       # also pass inputs to home-manager modules
       extraSpecialArgs = {inherit inputs;};
       useGlobalPkgs = true;
@@ -98,7 +89,7 @@ in {
 
         home.stateVersion = "23.11"; # Please read the comment before changing.
 
-        home.packages = cfg.defaultPkgs;
+        home.packages = cfg.defaultPkgs ++ cfg.extraPkgs;
 
         home.file = {
           ".local/share/konsole/zsh.profile".text = "
@@ -114,7 +105,7 @@ in {
 
         home.sessionVariables = {
           EDITOR = "nvim";
-          NIXOS_CONFIG_ROOT = "$HOME/dotfiles/nixos";
+          NIXOS_CONFIG_ROOT = "$HOME/nixos";
         };
 
 	      programs = {
@@ -134,12 +125,9 @@ in {
             enableCompletion = true;
             autosuggestion.enable = true;
             syntaxHighlighting.enable = true;
-            dotDir = ".config/zsh";
+            dotDir = "$HOME/.config/zsh";
 
             shellAliases = commonAliases;
-            history.size = 10000;
-            # history.path = "${config.xdg.dataHome}/zsh/history";
-
             plugins = [
               {
                 name = "powerlevel10k";
