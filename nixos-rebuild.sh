@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "${NIXOS_CONFIG_ROOT}" ]; then
-	echo "Please set the environment variable \`dotfilesRoot\`"
+	echo "Please set the environment variable \`NIXOS_CONFIG_ROOT\`"
 	exit 1
 fi
 
