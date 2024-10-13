@@ -185,6 +185,10 @@ Parent=FALLBACK/
       };
     };
 
+    lazygit = {
+      enable = true;
+    };
+
     direnv = {
       enable = true;
       enableBashIntegration = true;
