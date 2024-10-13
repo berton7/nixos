@@ -23,4 +23,4 @@ sudo nixos-rebuild switch --flake $NIXOS_CONFIG_ROOT#$conf
 current=$(nixos-rebuild list-generations --flake $NIXOS_CONFIG_ROOT#$conf | grep current)
 
 # Commit all changes witih the generation metadata
-git -C $NIXOS_CONFIG_ROOT commit -am "[$conf] $current"
+git -C $NIXOS_CONFIG_ROOT commit -am "[nixos-rebuild] $conf $current"
