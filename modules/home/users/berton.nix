@@ -25,7 +25,7 @@
     rs = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_ROOT";
     rt = "sudo nixos-rebuild test --flake $NIXOS_CONFIG_ROOT";
     rb = "$NIXOS_CONFIG_ROOT/nixos-rebuild.sh";
-    nfu = "nix flake update $NIXOS_CONFIG_ROOT";
+    nfu = "nix flake update --flake $NIXOS_CONFIG_ROOT";
     up = "git -C $NIXOS_CONFIG_ROOT pull && nfu && rb";
     cleanup = "$NIXOS_CONFIG_ROOT/cleanup.sh";
 
