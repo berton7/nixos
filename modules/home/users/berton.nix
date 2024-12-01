@@ -3,9 +3,6 @@
   pkgs,
   ...
 }: let
-  # this is the directory of the final flake system configuration (/nix/store)
-  storeDotfilesRoot = builtins.toString ../..;
-
   commonAliases = {
     # commands
     ls = "ls -hN --color=auto --group-directories-first";
@@ -27,14 +24,14 @@
     # scripts
     rs = "sudo nixos-rebuild switch --flake $NIXOS_CONFIG_ROOT";
     rt = "sudo nixos-rebuild test --flake $NIXOS_CONFIG_ROOT";
-    rb = "dotfilesRoot=$NIXOS_CONFIG_ROOT ${storeDotfilesRoot}/nixos-rebuild.sh";
+    rb = "$NIXOS_CONFIG_ROOT/nixos-rebuild.sh";
     nfu = "nix flake update $NIXOS_CONFIG_ROOT";
     up = "git -C $NIXOS_CONFIG_ROOT pull && nfu && rb";
-    cleanup = "${storeDotfilesRoot}/cleanup.sh";
+    cleanup = "$NIXOS_CONFIG_ROOT/cleanup.sh";
 
     # shell-nix
-    mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && chmod +w shell.nix && echo \"use nix\" > .envrc && direnv allow";
-    mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && chmod +w flake.nix && echo \"use flake\" > .envrc && direnv allow";
+    mkshell = "cp $NIXOS_CONFIG_ROOT/modules/home/shell_default.nix shell.nix && chmod +w shell.nix && echo \"use nix\" > .envrc && direnv allow";
+    mkflake = "cp $NIXOS_CONFIG_ROOT/modules/home/flake_default.nix flake.nix && chmod +w flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
 in {
   # allow unfree also in home-manager
