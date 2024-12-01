@@ -40,7 +40,6 @@
     mkshell = "cp ${storeDotfilesRoot}/modules/home/shell_default.nix shell.nix && chmod +w shell.nix && echo \"use nix\" > .envrc && direnv allow";
     mkflake = "cp ${storeDotfilesRoot}/modules/home/flake_default.nix flake.nix && chmod +w flake.nix && echo \"use flake\" > .envrc && direnv allow";
   };
-
 in {
   imports = [
     inputs.home-manager.nixosModules.default
@@ -108,11 +107,10 @@ in {
           NIXOS_CONFIG_ROOT = "$HOME/nixos";
         };
 
-	      programs = {
+        programs = {
           home-manager = {
             enable = true;
           };
-
 
           bash = {
             enable = true;

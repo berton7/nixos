@@ -77,7 +77,10 @@ in {
     # zsh shell
     zsh
     zsh-powerlevel10k
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
+    # (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono" "Meslo"];})
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.meslo-lg
 
     # other programs
     python3
