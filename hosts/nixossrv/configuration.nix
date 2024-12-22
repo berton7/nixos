@@ -64,7 +64,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
+  # Enable the lxqt Desktop Environment.
+  services.xserver.desktopManager.lxqt.enable = true;
   services.displayManager.defaultSession = "lxqt";
   services.displayManager.sddm.enable = true;
 
