@@ -101,6 +101,20 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      nixossrv = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                mypkgs = myrepo.packages.${system};
+              })
+            ];
+          }
+          ./hosts/nixossrv/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
   };
 }
