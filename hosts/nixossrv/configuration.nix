@@ -65,17 +65,14 @@
   services.xserver.enable = true;
 
   # Enable the lxqt Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable = true;
-  services.displayManager.defaultSession = "lxqt";
-  services.displayManager.sddm.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  fonts.fontconfig.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -104,8 +101,6 @@
   };
 
   ## Enable automatic login for the user.
-  #services.displayManager.autoLogin.enable = true;
-  #services.displayManager.autoLogin.user = "berton";
   services.displayManager.autoLogin.enable = false;
 
   # Allow unfree packages
