@@ -20,6 +20,7 @@
       system: let
         pkgs = import nixpkgs {
           inherit system;
+          config.allowUnfree = true;
         };
         mypkgs = myrepo.packages.${system};
       in
