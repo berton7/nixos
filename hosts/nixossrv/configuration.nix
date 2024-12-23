@@ -77,6 +77,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable vscode-server: https://github.com/nix-community/nixos-vscode-server
+  services.vscode-server.enable = true;
+  services.vscode-server.enableFHS = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.berton = {
     isNormalUser = true;

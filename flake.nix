@@ -113,6 +113,7 @@
           }
           ./hosts/nixossrv/configuration.nix
           inputs.home-manager.nixosModules.default
+          inputs.vscode-server.nixosModules.default
         ];
       };
     };
