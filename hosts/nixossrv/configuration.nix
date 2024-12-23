@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/home/users/User1.nix
     inputs.home-manager.nixosModules.default
   ];
 
@@ -81,27 +82,20 @@
   services.vscode-server.enable = true;
   services.vscode-server.enableFHS = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.berton = {
-    isNormalUser = true;
-    description = "berton";
-    extraGroups = ["networkmanager" "wheel" "vboxsf"];
-    packages = with pkgs; [
-      firefox
-      kate
-      #  thunderbird
-    ];
-  };
+  User1 = {
+    enable = true;
+    username = "berton";
+    defaultPkgs = with pkgs; [
+      # zsh shell
+      zsh
+      zsh-powerlevel10k
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
 
-  home-manager = {
-    # also pass inputs to home-manager modules
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      "berton" = import ../../modules/home/users/berton.nix;
-    };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupFileExtension = "bak";
+      # other programs
+      python3
+    ];
   };
 
   ## Enable automatic login for the user.
