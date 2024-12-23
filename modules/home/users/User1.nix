@@ -122,7 +122,7 @@ in {
             enableCompletion = true;
             autosuggestion.enable = true;
             syntaxHighlighting.enable = true;
-            dotDir = "$HOME/.config/zsh";
+            dotDir = ".config/zsh";
 
             shellAliases = commonAliases;
             plugins = [
