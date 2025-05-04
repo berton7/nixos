@@ -77,12 +77,6 @@ in {
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.meslo-lg
-
-    # other programs
-    python3
-    vscode-fhs
-    spotify
-    libsForQt5.kdeconnect-kde
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -99,15 +93,6 @@ in {
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".local/share/konsole/zsh.profile".text = "
-[Appearance]
-ColorScheme=DarkPastels
-
-[General]
-Command=zsh -l
-Name=zsh
-Parent=FALLBACK/
-";
   };
 
   # Home Manager can also manage your environment variables through
@@ -127,7 +112,7 @@ Parent=FALLBACK/
   #
   home.sessionVariables = {
     EDITOR = "nvim";
-    NIXOS_CONFIG_ROOT = "$HOME/dotfiles/nixos";
+    NIXOS_CONFIG_ROOT = "$HOME/nixos";
   };
 
   # Let Home Manager install and manage itself.
